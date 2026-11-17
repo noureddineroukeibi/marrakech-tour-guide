@@ -5,13 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marrakech Tour Guide</title>
     <style>
-        body { font-family: Arial, sans-serif; background: #f4f4f9; color: #333; text-align: center; padding: 50px; }
-        h1 { color: #d9534f; }
-        p { font-size: 1.2rem; }
+        :root {
+            --primary-color: #c0392b;
+            --secondary-color: #d35400;
+            --bg-color: #fdfbf7;
+            --text-color: #2c3e50;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 500px;
+            border-top: 5px solid var(--primary-color);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 2rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(192, 57, 43, 0.4);
+        }
     </style>
 </head>
 <body>
-    <h1>Welcome to Marrakech Tour Guide 🌴</h1>
-    <p>Discover the red city, explore the vibes, and enjoy the authentic culture.</p>
+
+    <div class="card">
+        <h1>Marrakech Tour Guide 🌴</h1>
+        <p>Discover Marrakech and explore our vibes. Experience the magic of the red city, ancient medinas, and unforgettable Moroccan culture.</p>
+        <a href="#" class="btn">Explore Places</a>
+    </div>
+
 </body>
 </html>
