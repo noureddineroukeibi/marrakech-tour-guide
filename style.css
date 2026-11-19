@@ -1,30 +1,25 @@
-/* =========================================
-   1. VARIABLES & BASE RESET
-   ========================================= */
 :root {
-  --bg-primary: #0f0f11;
-  --bg-secondary: #18181c;
-  --bg-elevated: rgba(24, 24, 28, 0.92);
-  --text-primary: #f5f5f7;
-  --text-secondary: #b8b8c2;
-  --accent-gold: #d4af37;
-  --accent-gold-hover: #b8921e;
-  --border-subtle: rgba(212, 175, 55, 0.18);
-  --shadow-soft: 0 12px 32px rgba(0, 0, 0, 0.45);
-  --transition-fast: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  --radius-md: 12px;
-  --radius-pill: 999px;
+  --bg: #0f0d0a;
+  --surface: #191510;
+  --surface-2: #241e17;
+  --text: #f7f3eb;
+  --muted: #cfc5b4;
+  --gold: #d99b26;
+  --gold-hover: #ebb03b;
+  --border: rgba(255, 255, 255, 0.12);
+  --shadow: 0 14px 34px rgba(0, 0, 0, 0.35);
 }
 
-/* Light Mode Support */
 body.light-mode {
-  --bg-primary: #faf8f5;
-  --bg-secondary: #ffffff;
-  --bg-elevated: rgba(255, 255, 255, 0.94);
-  --text-primary: #16161a;
-  --text-secondary: #4e4e58;
-  --border-subtle: rgba(22, 22, 26, 0.12);
-  --shadow-soft: 0 10px 28px rgba(0, 0, 0, 0.08);
+  --bg: #faf7f2;
+  --surface: #ffffff;
+  --surface-2: #f1ebe0;
+  --text: #1c1915;
+  --muted: #5c5346;
+  --gold: #c28212;
+  --gold-hover: #a66d0b;
+  --border: rgba(28, 25, 21, 0.12);
+  --shadow: 0 12px 28px rgba(28, 25, 21, 0.08);
 }
 
 *,
@@ -37,139 +32,132 @@ body.light-mode {
 
 html {
   scroll-behavior: smooth;
-  font-size: 16px;
 }
 
 body {
-  font-family: 'Poppins', 'Segoe UI', system-ui, -apple-system, sans-serif;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
   line-height: 1.6;
-  padding-top: 78px; /* Space for fixed navbar */
-  overflow-x: hidden;
-  transition: background-color var(--transition-fast), color var(--transition-fast);
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-/* =========================================
-   2. NAVBAR CONTAINER & BRANDING
-   ========================================= */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  background: var(--gold);
+  color: #111;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 700;
+  z-index: 2000;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+/* Navbar */
 .navbar {
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
-  width: 100%;
-  height: 78px;
-  background: var(--bg-elevated);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--border-subtle);
-  box-shadow: var(--shadow-soft);
   z-index: 1000;
-  display: flex;
-  align-items: center;
+  background: rgba(15, 13, 10, 0.88);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+body.light-mode .navbar {
+  background: rgba(250, 247, 242, 0.92);
 }
 
 .nav-container {
-  width: 100%;
-  max-width: 1240px;
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 14px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 16px;
 }
 
-.nav-logo,
-.logo {
-  font-size: 1.35rem;
-  font-weight: 700;
-  letter-spacing: 0.4px;
-  color: var(--text-primary);
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  white-space: nowrap;
+.nav-logo {
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: 0.2px;
 }
 
-.nav-logo span,
-.logo span {
-  color: var(--accent-gold);
+.nav-logo span {
+  color: var(--gold);
+  margin-inline-start: 5px;
 }
 
-/* =========================================
-   3. DESKTOP NAVIGATION LINKS
-   ========================================= */
 .nav-links {
   list-style: none;
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 22px;
 }
 
 .nav-links a {
-  position: relative;
-  color: var(--text-secondary);
-  text-decoration: none;
   font-size: 0.95rem;
   font-weight: 500;
-  padding: 6px 0;
-  transition: color var(--transition-fast);
+  color: var(--muted);
+  transition: color 0.2s ease;
 }
 
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0;
-  height: 2px;
-  background-color: var(--accent-gold);
-  border-radius: 2px;
-  transition: width var(--transition-fast);
+.nav-links a:hover {
+  color: var(--gold);
 }
 
-.nav-links a:hover,
-.nav-links a.active {
-  color: var(--text-primary);
-}
-
-.nav-links a:hover::after,
-.nav-links a.active::after {
-  width: 100%;
-}
-
-/* =========================================
-   4. RIGHT ACTIONS (SETTINGS, BOOK NOW, BURGER)
-   ========================================= */
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+  position: relative;
 }
 
-.btn-book,
-.nav-book {
-  background: linear-gradient(135deg, var(--accent-gold), #c29524);
-  color: #111113;
-  font-weight: 600;
-  font-size: 0.9rem;
-  text-decoration: none;
-  padding: 10px 20px;
-  border-radius: var(--radius-pill);
-  border: none;
+.icon-btn {
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 11px;
   cursor: pointer;
-  white-space: nowrap;
-  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.28);
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+  font-size: 1rem;
 }
 
-.btn-book:hover,
-.nav-book:hover {
-  transform: translateY(-2px);
-  background: linear-gradient(135deg, #e2be47, var(--accent-gold));
-  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+.btn-book {
+  background: var(--gold);
+  color: #14110c;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 9px 15px;
+  border-radius: 10px;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn-book:hover {
+  background: var(--gold-hover);
+  transform: translateY(-1px);
 }
 
 /* Settings Dropdown */
@@ -177,63 +165,37 @@ body {
   position: relative;
 }
 
-.icon-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid var(--border-subtle);
-  background: var(--bg-secondary);
-  color: var(--text-primary);
-  font-size: 1.05rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: border-color var(--transition-fast), transform var(--transition-fast), background var(--transition-fast);
-}
-
-.icon-btn:hover {
-  border-color: var(--accent-gold);
-  transform: rotate(25deg);
-}
-
 .dropdown-content {
   position: absolute;
-  top: 50px;
-  right: 0;
+  inset-inline-end: 0;
+  top: calc(100% + 10px);
   width: 240px;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  padding: 12px;
-  box-shadow: var(--shadow-soft);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 10px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   z-index: 1200;
 }
 
-.dropdown-content.hidden {
-  display: none;
-}
-
 .dropdown-content a {
-  color: var(--text-secondary);
-  text-decoration: none;
-  font-size: 0.9rem;
-  padding: 7px 10px;
+  padding: 8px 10px;
   border-radius: 8px;
-  transition: background var(--transition-fast), color var(--transition-fast);
+  font-size: 0.9rem;
+  color: var(--muted);
 }
 
 .dropdown-content a:hover {
-  background: rgba(212, 175, 55, 0.12);
-  color: var(--accent-gold);
+  background: var(--surface-2);
+  color: var(--text);
 }
 
 .dropdown-content hr {
   border: none;
-  border-top: 1px solid var(--border-subtle);
+  border-top: 1px solid var(--border);
   margin: 4px 0;
 }
 
@@ -241,157 +203,94 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: 8px;
   padding: 6px 10px;
-  font-size: 0.88rem;
-  color: var(--text-secondary);
+  font-size: 0.9rem;
 }
 
 .setting-item select,
 .theme-btn {
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  border: 1px solid var(--border-subtle);
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border);
   border-radius: 8px;
-  padding: 5px 10px;
-  font-size: 0.82rem;
+  padding: 5px 8px;
+  font-size: 0.85rem;
   cursor: pointer;
-  outline: none;
 }
 
-.setting-item select:focus,
-.theme-btn:hover {
-  border-color: var(--accent-gold);
-}
-
-/* =========================================
-   5. MOBILE HAMBURGER & DRAWER MENU
-   ========================================= */
+/* Mobile Menu */
 .hamburger-btn {
   display: none;
-  width: 42px;
-  height: 42px;
-  border-radius: 10px;
-  border: 1px solid var(--border-subtle);
-  background: var(--bg-secondary);
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: 4px;
+  width: 38px;
+  height: 38px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
   cursor: pointer;
-  transition: border-color var(--transition-fast);
-}
-
-.hamburger-btn:hover {
-  border-color: var(--accent-gold);
+  padding: 0 9px;
 }
 
 .hamburger-btn span {
-  width: 20px;
+  display: block;
   height: 2px;
-  background-color: var(--text-primary);
+  width: 100%;
+  background: var(--text);
   border-radius: 2px;
-  transition: transform var(--transition-fast), opacity var(--transition-fast);
 }
 
 .mobile-menu {
-  position: fixed;
-  top: 78px;
-  left: 0;
-  width: 100%;
-  background: var(--bg-secondary);
-  border-bottom: 1px solid var(--border-subtle);
-  box-shadow: var(--shadow-soft);
-  padding: 20px 24px 28px;
-  z-index: 999;
-}
-
-.mobile-menu.hidden {
-  display: none;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 14px 20px 18px;
 }
 
 .mobile-menu ul {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 
-.mobile-menu a:not(.btn-book) {
+.mobile-menu a.mobile-link {
   display: block;
-  color: var(--text-primary);
-  text-decoration: none;
-  font-size: 1rem;
+  padding: 6px 0;
+  color: var(--muted);
   font-weight: 500;
-  padding: 8px 4px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  transition: color var(--transition-fast), padding-left var(--transition-fast);
-}
-
-.mobile-menu a:not(.btn-book):hover {
-  color: var(--accent-gold);
-  padding-left: 10px;
 }
 
 .mobile-btn {
-  width: 100%;
+  display: inline-block;
   text-align: center;
-  margin-top: 8px;
-  padding: 12px 20px;
+  margin-top: 4px;
 }
 
-/* =========================================
-   6. RESPONSIVE BREAKPOINTS
-   ========================================= */
-@media (max-width: 900px) {
-  .nav-links {
-    gap: 18px;
-  }
-
-  .nav-links a {
-    font-size: 0.9rem;
-  }
+/* Hero */
+.hero {
+  position: relative;
+  min-height: 78vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 72px 20px 44px;
+  background:
+    linear-gradient(to top, rgba(15, 13, 10, 0.92), rgba(15, 13, 10, 0.55)),
+    url("images/agafay-sunset.jpg") center / cover no-repeat;
+  color: #fff;
 }
 
-@media (max-width: 768px) {
-  .navbar {
-    height: 70px;
-  }
-
-  body {
-    padding-top: 70px;
-  }
-
-  .mobile-menu {
-    top: 70px;
-  }
-
-  .nav-links {
-    display: none;
-  }
-
-  .nav-actions .btn-book:not(.mobile-btn),
-  .nav-actions .nav-book {
-    display: none; /* Kept accessible inside mobile menu to prevent crowding */
-  }
-
-  .hamburger-btn {
-    display: flex;
-  }
+.hero-content {
+  max-width: 720px;
+  margin: 0 auto;
+  width: 100%;
 }
 
-@media (max-width: 420px) {
-  .nav-container {
-    padding: 0 14px;
-  }
-
-  .nav-logo,
-  .logo {
-    font-size: 1.12rem;
-  }
-
-  .dropdown-content {
-    right: -36px;
-    width: 220px;
-  }
-}
+.eyebrow {
+  display: inline-block;
+  color: var(--gold);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing
