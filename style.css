@@ -293,4 +293,21 @@ body.light-mode .navbar {
   color: var(--gold);
   font-size: 0.85rem;
   font-weight: 700;
-  letter-spacing
+  letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+
+  .hamburger-btn {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav-book {
+    display: none;
+  }
+
+}
